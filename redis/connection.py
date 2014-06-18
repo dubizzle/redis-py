@@ -556,6 +556,11 @@ class Connection(object):
             return b(value.value)
         elif isinstance(value, bytes):
             return value
+        if isinstance(value, bool):
+            if value:
+                value = b(str(1))
+            else:
+                value = b(str(0))
         elif isinstance(value, (int, long)):
             value = b(str(value))
         elif isinstance(value, float):
